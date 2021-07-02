@@ -1,0 +1,18 @@
+.logo {
+    color: $darkgray;
+    font-weight: 100;
+    -webkit-text-stroke: thick;
+    -webkit-text-emphasis: dot;
+}
+
+.large_logo {
+    margin: 40px 0;
+    font-size: 40px;
+    text-align: center;
+}
+
+.header__logo {
+    margin-top: -10px !important;
+    font-size: 24px;
+    margin-right: 10px;
+}

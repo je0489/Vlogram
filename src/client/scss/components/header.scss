@@ -1,3 +1,45 @@
 header {
+    background-color: white;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc( 100% - 100px );
+    height: 54px;
+    padding: 20px 50px;
+    border: 0.3px solid $gray;
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        li {
+            margin-left: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        i {
+            font-size: 40px;
+            margin-right: 10px;
+
+            &:hover {
+                color: rgba($color: $mainColor, $alpha: 1);
+            }
+        }
+    }
+    .header__btn {
+        background-color: $mainColor;
+        color: $bg;
+        padding: 10px 20px;
+        margin-right: 6px;
+        border-radius: 15px;
+
+        &:focus {
+            opacity: 0.4;
+        }
+    }
+    .header__avatar img, i {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
 }

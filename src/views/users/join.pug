@@ -1,0 +1,18 @@
+extends ../base
+
+block content
+    form(method="POST").section.user_section
+        include ../partials/logo
+        input(name="id", placeholder="User ID", type="text", required)
+        input(name="password", placeholder="Password", type="password", required)
+        input(name="confirmPassword", placeholder="Confirm Password", type="password", required)
+        input(name="name", placeholder="Name", type="text", required)
+        input(name="email", placeholder="Email", type="email", required)
+        input(name="location", placeholder="Location", type="text", required)
+        input(type="submit", value="Join")
+
+        div
+            include ../partials/social-login
+    div.section.user_section.auth-switch
+        span Already have an account? 
+        a(href="/login") Login now  &rarr;

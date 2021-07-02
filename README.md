@@ -9,3 +9,4 @@ Perform Feature List
     🕹 Watch Video
     🕹 Javascript Video Player
     🕹 Comment Section + Code Challenge
+    🕹 Edit Profile 이미지 변경시 사진 바로 변경되게~!

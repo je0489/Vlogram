@@ -1,0 +1,20 @@
+.profile__data {
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    img, i {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        font-size: 150px;
+        max-inline-size: fit-content;
+    }
+    h3 {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: lighter;
+    }
+}

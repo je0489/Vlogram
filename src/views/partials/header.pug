@@ -1,16 +1,29 @@
 header
-    a(href="/") HOME
+    a(href="/").logo.header__logo
+        i Vlogram
+    form(method="GET" action="/search").search__form
+        input(name="keyword", placeholder="Search by title", type="text")
+        button
+            i.fas.fa-search
     nav
         ul
             li
-                a(href="/") SEARCH
-            li
-                a(href="/") HOME
-            li
-                a(href="/") FEED
-            li
-                a(href="/") MY FEED
-            li
-                a(href="/") LOGIN
-            li
-                a(href="/") JOIN
+            if loggedIn
+                li
+                    a(href="/videos/upload")
+                        i.fas.fa-plus(title="Upload")
+                li
+                    a(href="/users/edit")
+                        i.fas.fa-cog(title="Edit Profile")
+                li
+                    a(href="/users/logout")
+                        i.fas.fa-sign-out-alt(title="Logout")
+                li
+                    div.header__avatar(title="Profile")
+                        a(href=`/users/${loggedInUser._id}`)
+                            include ../partials/avatar
+            else 
+                li
+                    a(href="/login").header__btn  Login
+                li
+                    a(href="/join")  Join

@@ -1,0 +1,27 @@
+.empty__message {
+    display: table;
+    margin: 25px auto;
+    color: $mainColor;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: center;
+}
+.empty__message::before, 
+.empty__message::after {
+    content: "..."
+}
+.video-grid :not(.empty__message) {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.auth-switch {
+    text-align: center;
+    margin-top: 40px;
+    a {
+        text-decoration: underline;
+    }
+}
+.user_section {
+    max-width: 430px !important;
+}
