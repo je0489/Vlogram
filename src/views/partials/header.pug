@@ -21,8 +21,8 @@ header
                             if !loggedInUser.avatarUrl
                                 i.fas.fa-user-circle
                             else 
-                                if loggedInUser.socialOnly && loggedInUser.avatarUrl.substr(0, 4) === "http"
-                                    img.avatar(src = loggedInUser.avatarUrl)
+                                if loggedInUser.avatarUrl.substr(0, 4) === "http"
+                                    
                                 else 
                                     img.avatar(src = "/" + loggedInUser.avatarUrl)
                 li

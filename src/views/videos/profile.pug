@@ -6,7 +6,7 @@ block content
         if !user.avatarUrl
             i.fas.fa-user-circle
         else 
-            if user.socialOnly && user.avatarUrl.substr(0, 4) === "http"
+            if user.avatarUrl.substr(0, 4) === "http"
                 img.avatar(src = user.avatarUrl)
             else 
                 img.avatar(src = "/" + user.avatarUrl)

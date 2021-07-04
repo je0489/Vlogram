@@ -11,7 +11,7 @@ block content
                         if !video.owner.avatarUrl
                             i.fas.fa-user-circle
                         else 
-                            if video.owner.socialOnly && video.owner.avatarUrl.substr(0, 1) !== "/"
+                            if video.owner.avatarUrl.substr(0, 4) === "http"
                                 img.avatar(src = video.owner.avatarUrl)
                             else 
                                 img.avatar(src = "/" + video.owner.avatarUrl)
