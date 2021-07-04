@@ -1,7 +1,7 @@
 div#videoContainer(data-id=video._id)
         if isHeroku
             video(src=video.fileUrl)
-        eles
+        else
             video(src="/" + video.fileUrl)
         div#videoControls.videoControls
             div.videoControls__play
