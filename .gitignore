@@ -3,3 +3,4 @@ assets
 uploads
 package-lock.json
 .env
+/build
