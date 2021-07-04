@@ -9,12 +9,12 @@ export const postJoin = async (req, res) => {
   const { id, password, confirmPassword, name, email, location } = req.body;
   const pageTitle = "Join";
   if (password !== confirmPassword) {
-    req.flash(message.type.e, message.msg.notMatchPassword);
+    req.flash(message.type.e, message.msg.user.notMatchPassword);
     return res.status(400).render("users/join", { pageTitle });
   };
   const exists = await User.exists({ $or: [{ id }, { email }] });
   if (exists) {
-    req.flash(message.type.e, message.msg.isExistUser);
+    req.flash(message.type.e, message.msg.user.isExistUser);
     return res.status(400).render("users/join", { pageTitle });
   }
   try {
@@ -25,7 +25,7 @@ export const postJoin = async (req, res) => {
       email,
       location
     });
-    req.flash(message.type.s, message.msg.joinSucess);
+    req.flash(message.type.s, message.msg.user.joinSuccess);
     return res.redirect("/login");
   } catch( e ) {
     req.flash(message.type.e, e._message);
@@ -38,17 +38,17 @@ export const postLogin = async ( req, res ) => {
   const pageTitle = "Login";
   const user = await User.findOne( { id, socialOnly: false } );
   if( !user ) {
-    req.flash(message.type.e, message.msg.loginFail[0].aboutId);
+    req.flash(message.type.e, message.msg.user.loginFail[0].aboutId);
     return res.status( 400 ).render( "users/login", { pageTitle } );
   }
   const ok = await bcrypt.compare( password, user.password );
   if( !ok ) {
-    req.flash(message.type.e, message.msg.loginFail[0].aboutPsw);
+    req.flash(message.type.e, message.msg.user.loginFail[0].aboutPsw);
     return res.status( 400 ).render( "users/login", { pageTitle } );
   }
   req.session.loggedIn = true;
   req.session.user = user;
-  req.flash(message.type.s, message.msg.loginSucess + user.name);
+  req.flash(message.type.s, message.msg.user.loginSuccess + user.name);
   res.redirect( "/" );
 };
 export const startGithubLogin = ( req, res ) => {
@@ -97,7 +97,7 @@ export const finishGithubLogin = async (req, res) => {
     ).json();
     const emailObj = emailData.find( email => email.primary && email.verified );
     if( !emailObj ) {
-      req.flash(message.type.e, message.msg.loginFail[1]);
+      req.flash(message.type.e, message.msg.user.loginFail[1]);
       return res.redirect( "/login" );
     }
     let user = await User.findOne({ $or: [{ id:userData.login }, { email: emailObj.email }]});
@@ -115,10 +115,10 @@ export const finishGithubLogin = async (req, res) => {
     }
       req.session.loggedIn = true;
       req.session.user = user;
-      req.flash(message.type.s, message.msg.loginSucess + user.name);
+      req.flash(message.type.s, message.msg.user.loginSuccess + user.name);
       return res.redirect("/");
   } else {
-    req.flash(message.type.e, message.msg.loginFail[1]);
+    req.flash(message.type.e, message.msg.user.loginFail[1]);
     return res.redirect("/login");
   }
 };
@@ -146,13 +146,13 @@ export const postEdit = async ( req, res ) => {
   return res.redirect( "/users/edit" );
 };
 export const logout = ( req, res ) => {
-  req.flash(message.type.i, message.msg.logout);
+  req.flash(message.type.i, message.msg.user.logout);
   req.session.destroy();
   return res.redirect("/");
 }; 
 export const getChangePassword = ( req, res ) => {
   if (req.session.user.socialOnly === true) {
-    req.flash(message.type.e, message.msg.githubUser);
+    req.flash(message.type.e, message.msg.user.githubUser);
     return res.redirect("/");
   }
   return res.render( "users/change-password", { pageTitle: "Change Password" } );
@@ -168,16 +168,16 @@ export const postChangePassword = async ( req, res ) => {
   const user = await User.findById( _id );
   const ok = await bcrypt.compare( oldPassword, user.password );
   if ( !ok ) {
-    req.flash(message.type.e, message.msg.notSameCurPassword);
+    req.flash(message.type.e, message.msg.user.notSameCurPassword);
     return res.status(400).render("users/change-password", { pageTitle });
   }
   if ( newPassword !== newPasswordConfirmation ) {
-    req.flash(message.type.e, message.msg.notMatchPassword);
+    req.flash(message.type.e, message.msg.user.notMatchPassword);
     return res.status(400).render("users/change-password", { pageTitle });
   }
   user.password = newPassword;
   await user.save();
-  req.flash(message.type.i, message.msg.updatePasswordSucess);
+  req.flash(message.type.i, message.msg.user.updatePasswordSuccess);
   return res.redirect( "/users/logout" );
 };
 export const see = async ( req, res ) => {

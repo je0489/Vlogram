@@ -1,7 +1,0 @@
-if !loggedInUser.avatarUrl
-    i.fas.fa-user-circle
-else 
-    if loggedInUser.socialOnly 
-        img.avatar(src = loggedInUser.avatarUrl)
-    else 
-        img.avatar(src = "/" + loggedInUser.avatarUrl)

@@ -12,9 +12,16 @@
         font-size: 150px;
         max-inline-size: fit-content;
     }
-    h3 {
+    .user {
+        text-align: center;
         margin-top: 20px;
-        font-size: 20px;
-        font-weight: lighter;
+        h3 {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: lighter;
+        }
+        h3.userID {
+            font-weight: bolder;
+        }
     }
 }

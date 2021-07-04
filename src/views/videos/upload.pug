@@ -1,0 +1,18 @@
+extends ../base
+
+block content
+    div.upload__container.section
+        div.upload__video
+            video#preview
+            button#actionBtn Start Recording
+        form(method="POST", enctype="multipart/form-data")
+            label(for="video") Video Url
+            input(name="video", id="video", type="file", accept="video/*", required)
+            label(for="thumb") Thumbnail Url
+            input(name="thumb", id="thumb", type="file", accept="image/*", required)
+            input(name="description", type="text", placeholder="Description", minlength=5, required)
+            input(name="hashtags", type="text", placeholder="Hashtags, separated by comma.", required )
+            input(type="submit", value="Upload Video")
+
+block scripts 
+    script(src="/assets/js/recorder.js")

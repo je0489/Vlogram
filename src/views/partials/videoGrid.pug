@@ -1,4 +1,9 @@
 div.section
+    if keyword
+        div.search__message
+            span "
+            b=keyword
+            span " 에 대한 검색 결과입니다.
     div.video-grid
         each video in videos
             +video(video)

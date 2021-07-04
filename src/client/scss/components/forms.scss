@@ -1,60 +1,73 @@
 form {
   label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 14px;
-      font-weight: lighter;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: lighter;
   }
 
-  input { 
+  input, button {
     width: 100%;
   }
-}
-  
-input:not(input[type="range"],input[type="submit"]) {
-  all: unset;
-  padding: 15px 20px;
-  border-radius: 10px;
-  border: 0.5px solid $gray;
-  background-color: $bg;
-  font-size: 16px;
-  margin-bottom: 15px;
-  width: 90%;
 
-  &::placeholder {
-    color: $gray;
-  }
-}
-
-
-input[type="submit"],
-.social__btn {
-  border-radius: 20px;
-  font-size: medium;
-  font-weight: 600 !important;
-  text-align: center !important;
-  cursor: pointer;
-  display: block;
-  border: none;
-  margin: 30px 0;
-  padding: 20px 0;
-
-  &:focus {
-    outline: none;
+  button {
+    margin: 0 !important;
   }
 
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  textarea {
+    margin-bottom: 0px !important;
+    height: 10px;
+    resize:none;
+    margin-right: 2px;
   }
-}
 
-input[type="submit"] {
-  background-color: $mainColor;
-  color: white !important;
+  textarea,
+  input:not(input[type="range"], input[type="submit"]) {
+    all: unset;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 0.5px solid $gray;
+    background-color: $bg;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 90%;
 
-  &:focus {
-    opacity: 0.4;
+    &::placeholder {
+      color: $gray;
+    }
+  }
+
+  button,
+  input[type="submit"],
+  .social__btn {
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: 600 !important;
+    text-align: center !important;
+    cursor: pointer;
+    display: block;
+    border: none;
+    margin: 30px 0;
+    padding: 20px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  button, 
+  input[type="submit"] {
+    background-color: $mainColor;
+    color: white !important;
+
+    &:focus {
+      opacity: 0.4;
+    }
   }
 }
 

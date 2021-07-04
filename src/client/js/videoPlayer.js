@@ -17,7 +17,11 @@ let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
+const handleMouseOver = () => videoControls.classList.add("showing");
+const handleMouseOut = () => videoControls.classList.remove("showing");
+
 const handlePlayClick = () => {
+  console.log( video.paused );
   if (video.paused) {
     video.play();
   } else {
@@ -72,32 +76,13 @@ const handleTimelineChange = (event) => {
 
 const handleFullscreen = () => {
   const fullscreen = document.fullscreenElement;
-  if (fullscreen) {
+  if( fullscreen ) {
     document.exitFullscreen();
     fullScreenIcon.classList = "fas fa-expand";
   } else {
     videoContainer.requestFullscreen();
     fullScreenIcon.classList = "fas fa-compress";
   }
-};
-
-const hideControls = () => videoControls.classList.remove("showing");
-
-const handleMouseMove = () => {
-  if (controlsTimeout) {
-    clearTimeout(controlsTimeout);
-    controlsTimeout = null;
-  }
-  if (controlsMovementTimeout) {
-    clearTimeout(controlsMovementTimeout);
-    controlsMovementTimeout = null;
-  }
-  videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 3000);
-};
-
-const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 3000);
 };
 
 const handleEnded = () => {
@@ -107,13 +92,13 @@ const handleEnded = () => {
   });
 };
 
+videoContainer.addEventListener("mouseover", handleMouseOver);
+videoContainer.addEventListener("mouseout", handleMouseOut);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
-videoContainer.addEventListener("mousemove", handleMouseMove);
-videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);

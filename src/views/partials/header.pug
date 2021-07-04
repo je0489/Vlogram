@@ -16,12 +16,18 @@ header
                     a(href="/users/edit")
                         i.fas.fa-cog(title="Edit Profile")
                 li
+                    div.__avatar(title="Profile")
+                        a(href=`/users/${loggedInUser._id}`)
+                            if !loggedInUser.avatarUrl
+                                i.fas.fa-user-circle
+                            else 
+                                if loggedInUser.socialOnly && loggedInUser.avatarUrl.substr(0, 4) === "http"
+                                    img.avatar(src = loggedInUser.avatarUrl)
+                                else 
+                                    img.avatar(src = "/" + loggedInUser.avatarUrl)
+                li
                     a(href="/users/logout")
                         i.fas.fa-sign-out-alt(title="Logout")
-                li
-                    div.header__avatar(title="Profile")
-                        a(href=`/users/${loggedInUser._id}`)
-                            include ../partials/avatar
             else 
                 li
                     a(href="/login").header__btn  Login

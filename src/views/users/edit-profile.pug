@@ -3,7 +3,13 @@ extends ../base
 block content
     form(method="POST", enctype="multipart/form-data").section.user_section.edit-profile__form
         div.profile__data
-            include ../partials/avatar
+            if !loggedInUser.avatarUrl
+                i.fas.fa-user-circle
+            else 
+                if loggedInUser.socialOnly && loggedInUser.avatarUrl.substr(0, 4) === "http"
+                    img.avatar(src = loggedInUser.avatarUrl)
+                else 
+                    img.avatar(src = "/" + loggedInUser.avatarUrl)
         label(for="avatar") Image Url
         input(name="avatar", id="avatar", type="file", accept="image/*")
         input(name="id", placeholder="User ID", type="text", required, value=loggedInUser.id)
@@ -17,6 +23,3 @@ block content
             span Do you want to chage your password?
             br
             a(href="change-password") Change Password &rarr;
-
-//- block scripts 
-//-     script(src="/assets/js/editProfile.js")

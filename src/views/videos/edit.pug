@@ -1,0 +1,13 @@
+extends ../base
+
+block content
+    div.section.video_section
+        include ../partials/videoPlayer
+        div.video__data
+            form( method="POST" )
+                input( name="description", placeholder="Description", type="text", value=video.description )
+                input( name="hashtags", placeholder="Hashtags, seperated by comma.", value=video.hashtags.join(), type="text" )
+                input( value="Save" type="submit" )
+
+    block scripts 
+        script(src="/assets/js/videoPlayer.js")            

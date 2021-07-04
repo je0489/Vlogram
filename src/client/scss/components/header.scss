@@ -37,7 +37,10 @@ header {
             opacity: 0.4;
         }
     }
-    .header__avatar img, i {
+}
+
+.__avatar {
+    img, i {
         width: 40px;
         height: 40px;
         border-radius: 50%;

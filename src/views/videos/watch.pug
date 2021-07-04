@@ -1,0 +1,53 @@
+extends ../base
+
+block content
+    div.section.video_section
+        include ../partials/videoPlayer
+        
+        div.video__data
+            div.__avatar
+                div
+                    a(href=`/users/${video.owner._id}`)               
+                        if !video.owner.avatarUrl
+                            i.fas.fa-user-circle
+                        else 
+                            if video.owner.socialOnly && video.owner.avatarUrl.substr(0, 1) !== "/"
+                                img.avatar(src = video.owner.avatarUrl)
+                            else 
+                                img.avatar(src = "/" + video.owner.avatarUrl)
+                    span.video__user
+                        a(href=`/users/${video.owner._id}`)=video.owner.id
+                    if String( video.owner._id ) === String( loggedInUser._id )
+                        div.video_edit
+                            span.video__user
+                                a(href=`${video.id}/edit`)
+                                    i.far.fa-edit
+                            span.video__user
+                                a(href=`${video.id}/delete`) 
+                                    i.far.fa-trash-alt
+                div.video__desc
+                    p=video.description
+                div.video__hashtag
+                    code=video.hashtags
+                div.video__createdAt
+                    small upload date: #{new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
+            div.video__comments
+                ul#comments
+                    each comment in comments.reverse()
+                        li.video__comment(data-id=comment._id)
+                            span.video__comment__user
+                                a(href=`/users/${comment.owner._id}`)=comment.owner.id
+                            span.video__comment__text=comment.text
+                            if String( comment.owner._id ) === String( loggedInUser._id ) 
+                                span.video__comment__btn
+                                    i.fas.fa-backspace
+            if loggedIn
+                div.video__add-comments
+                    form.video__comment-form#commentForm
+                        textarea(cols="30", rows="2", placeholder="Write a nice commment...")
+                        button Add Comment
+
+    block scripts 
+        script(src="/assets/js/videoPlayer.js")
+        if loggedIn
+            script(src="/assets/js/commentSection.js")
