@@ -1,6 +1,6 @@
 # Vlogram
 
-*Perform Feature List*<br>
+### *Perform Feature List*<br>
 [x] User Authentication (Login / Create Account)<br>
 [x] Edit Profile / Change Password<br>
 [x] Video Upload<br>
